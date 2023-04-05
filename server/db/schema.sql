@@ -1,18 +1,33 @@
-DROP DATABASE IF EXISTS projects_db;
-CREATE DATABASE projects_db;
+DROP DATABASE IF EXISTS rangeTest_db;
+CREATE DATABASE IF NOT EXISTS rangeTest_db;
 
-USE projects_db;
+USE rangeTest_db;
 
-CREATE TABLE projects (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  project_name VARCHAR(100) NOT NULL
+--range test project
+DROP TABLE IF EXISTS project;
+CREATE TABLE IF NOT EXISTS project (
+  projectId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  projectName VARCHAR(100) NOT NULL,
+  startDate TIME NOT NULL,
+  endDate TIME NOT NULL
 );
 
-CREATE TABLE reviews (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    movie_id INT,
-    review TEXT NOT NULL,
-    FOREIGN KEY (movie_id)
-    REFERENCES movies(id)
+CREATE TABLE owner (
+    ownerId INT NOT NULL AUTO_AINCREMENT PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL DEFAULT '',
+    lastName ARCHAR(50) NOT NULL DEFAULT '', 
+    projectId INT,
+    FOREIGN KEY (projectId)
+    REFERENCES project(projectId)
+    ON DELETE SET NULL
+
+);
+
+CREATE TABLE tasks (
+    taskId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    projectid INT,
+    task TEXT NOT NULL,
+    FOREIGN KEY (projectId)
+    REFERENCES project(projectId)
     ON DELETE SET NULL
 );
