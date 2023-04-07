@@ -9,13 +9,13 @@ CREATE TABLE IF NOT EXISTS project (
   projectId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   projectName VARCHAR(100) NOT NULL,
   startDate TIME NOT NULL,
-  endDate TIME NOT NULL
+  duration INT
 );
 
 CREATE TABLE owner (
     ownerId INT NOT NULL AUTO_AINCREMENT PRIMARY KEY,
     firstName VARCHAR(50) NOT NULL DEFAULT '',
-    lastName ARCHAR(50) NOT NULL DEFAULT '', 
+    -- lastName ARCHAR(50) NOT NULL DEFAULT '', 
     projectId INT,
     FOREIGN KEY (projectId)
     REFERENCES project(projectId)
@@ -25,7 +25,7 @@ CREATE TABLE owner (
 
 CREATE TABLE tasks (
     taskId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    projectid INT,
+    projectId INT,
     task TEXT NOT NULL,
     FOREIGN KEY (projectId)
     REFERENCES project(projectId)
