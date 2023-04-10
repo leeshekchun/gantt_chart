@@ -4,30 +4,26 @@ CREATE DATABASE IF NOT EXISTS rangeTest_db;
 USE rangeTest_db;
 
 --range test project
-DROP TABLE IF EXISTS project;
-CREATE TABLE IF NOT EXISTS project (
-  projectId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  projectName VARCHAR(100) NOT NULL,
-  startDate TIME NOT NULL,
-  duration INT
-);
 
-CREATE TABLE owner (
-    ownerId INT NOT NULL AUTO_AINCREMENT PRIMARY KEY,
-    firstName VARCHAR(50) NOT NULL DEFAULT '',
-    -- lastName ARCHAR(50) NOT NULL DEFAULT '', 
-    projectId INT,
-    FOREIGN KEY (projectId)
-    REFERENCES project(projectId)
-    ON DELETE SET NULL
-
-);
-
-CREATE TABLE tasks (
-    taskId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    projectId INT,
-    task TEXT NOT NULL,
-    FOREIGN KEY (projectId)
-    REFERENCES project(projectId)
+CREATE TABLE gantt_tasks (
+  task_id int(11) NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) NOT NULL,
+  `start_date` datetime NOT NULL,
+  `duration` int(11) NOT NULL,
+  `progress` float NOT NULL,
+  `parent` int(11) NOT NULL,
+  `owner` VARCHAR(50) NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
     ON DELETE SET NULL
 );
+
+CREATE TABLE gantt_links (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `source` int(11) NOT NULL,
+  `target` int(11) NOT NULL,
+  `type` varchar(1) NOT NULL,
+    PRIMARY KEY (`id`)
+    ON DELETE SET NULL
+);
+
+-- https://docs.dhtmlx.com/gantt/desktop__howtostart_nodejs.html
