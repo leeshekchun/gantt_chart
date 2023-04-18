@@ -3,10 +3,10 @@ const mysql = require("mysql");
 // Connect to database
 const db = mysql.createConnection({
     host: 'localhost',
-    // Your MySQL username,
+    // Input your MySQL username,
     user: 'root',
-    // Your MySQL password 
-    password: '',
+    // Input your MySQL password 
+    password: '1996111Nov',
     database: 'rangeTest_db'
   });
 
