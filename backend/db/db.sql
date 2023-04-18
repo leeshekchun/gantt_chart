@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS rangeTest_db;
+CREATE DATABASE IF NOT EXISTS rangeTest_db;
+
+USE rangeTest_db;

@@ -1,12 +1,8 @@
-DROP DATABASE IF EXISTS rangeTest_db;
-CREATE DATABASE IF NOT EXISTS rangeTest_db;
-
-USE rangeTest_db;
-
---range test project
+DROP TABLE IF EXISTS gantt_tasks;
+DROP TABLE IF EXISTS gantt_links;
 
 CREATE TABLE gantt_tasks (
-  task_id int(11) NOT NULL AUTO_INCREMENT,
+  `task_id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(255) NOT NULL,
   `start_date` datetime NOT NULL,
   `duration` int(11) NOT NULL,

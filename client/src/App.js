@@ -1,6 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Gantt from './components/Gantt';
 import './App.css';
+// import Axios from 'axios';
+
+// const Apps = () => {
+//     const [data,setData]=useState("");
+
+//     const getData = async () =>{
+//         const response = await Axios.get("http://localhost:1337/data");
+//         setData(response.data);
+//     }
+
+//     useEffect(()=>{
+//         getData()
+//     },[]);
+//     return(
+//         <div>{data}</div>
+//     )
+// }
 
 // hardcode data from line 6-14
 const data = {
@@ -12,6 +29,7 @@ const data = {
         { id: 1, source: 1, target: 2, type: '0' }
     ]
 };
+
 class App extends Component {
     render() {
         return (
