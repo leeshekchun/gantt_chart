@@ -5,8 +5,9 @@ const Promise = require('bluebird');
 require("date-format-lite");
 const db = require('./db/connection');
 const apiRoutes = require('./routes/apiRoutes');
+const dotenv = require('dotenv')
 
-const port = 1337;
+const PORT = 1337;
 const app = express();
 const mysql = require('promise-mysql');
 
