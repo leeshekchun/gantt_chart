@@ -35,8 +35,8 @@ router.post("/data/task", (req, res) => { // adds new task to database
     db.query("SELECT MAX(sortorder) AS maxOrder FROM gantt_tasks")
         .then(result => { /*!*/ // assign max sort order to new task
             let orderIndex = (result[0].maxOrder || 0) + 1;
-            return db.query("INSERT INTO gantt_tasks(text, start_date, duration, progress, parent, sortorder) VALUES (?,?,?,?,?,?)",
-                [task.text, task.start_date, task.duration, task.progress, task.parent, orderIndex]);
+            return db.query("INSERT INTO gantt_tasks(task, start_date, duration, sortorder) VALUES (?,?,?,?)",
+                [task.text, task.start_date, task.duration, orderIndex]);
         })
         .then(result => {
             sendResponse(res, "inserted", result.insertId);
@@ -53,8 +53,8 @@ router.put("/data/task/:id", (req, res) => {
         task = getTask(req.body);
 
     Promise.all([
-        db.query("UPDATE gantt_tasks SET text = ?, start_date = ?, duration = ?, progress = ?, parent = ? WHERE id = ?",
-            [task.text, task.start_date, task.duration, task.progress, task.parent, sid]),
+        db.query("UPDATE gantt_tasks SET text = ?, start_date = ?, duration = ?, WHERE id = ?",
+            [task.text, task.start_date, task.duration, sid]),
         updateOrder(sid, target)
     ])
         .then(result => {
@@ -112,9 +112,7 @@ router.delete("/data/task/:id", (req, res) => {
 		return {
 			text: data.text,
 			start_date: data.start_date.date("YYYY-MM-DD"),
-			duration: data.duration,
-			progress: data.progress || 0,
-			parent: data.parent
+			duration: data.duration
 		};
 	}
 
