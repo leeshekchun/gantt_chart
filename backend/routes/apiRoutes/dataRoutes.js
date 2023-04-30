@@ -2,6 +2,21 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/connection');
 
+router.get('/api/data', (req, res) => {
+    const sql = `SELECT * FROM gantt_tasks`;
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({
+        message: 'success',
+        data: rows
+      });
+    });
+  });
+  
 async function serverСonfig() {
 
   // get all data

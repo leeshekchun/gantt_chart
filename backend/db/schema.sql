@@ -15,4 +15,3 @@ CREATE TABLE `rangeTest_db`.`gantt_links` (
   PRIMARY KEY (`id`));
 
 
--- https://docs.dhtmlx.com/gantt/desktop__howtostart_nodejs.html
