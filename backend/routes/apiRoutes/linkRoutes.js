@@ -4,7 +4,7 @@ const db = require('../../db/connection');
 
 async function serverСonfig() {
 
-    	// add link
+    // add link
 	router.post("/data/link", (req, res) => {
 		let link = getLink(req.body);
 
